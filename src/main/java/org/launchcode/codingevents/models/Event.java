@@ -10,8 +10,8 @@ public class Event {
     private int id;
     private static int nextId = 1;
 
-    private String name;
-    private String description;
+    private static String name;
+    private static String description;
 
     public Event(String name, String description) {
         this.name = name;
@@ -20,7 +20,7 @@ public class Event {
         nextId++;
     }
 
-    public String getName() {
+    public static String getName() {
         return name;
     }
 
@@ -28,7 +28,7 @@ public class Event {
         this.name = name;
     }
 
-    public String getDescription() {
+    public static String getDescription() {
         return description;
     }
 
