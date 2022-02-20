@@ -1,8 +1,7 @@
 package org.launchcode.codingevents.models;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 import java.util.Objects;
 
 /**
@@ -24,11 +23,49 @@ public class Event {
     @Email(message = "Invalid email. Try again.")
     private String contactEmail;
 
-    public Event(String name, String description, String contactEmail) {
-        this();
+    @NotBlank(message = "Event location is required.")
+    @NotNull(message= "")
+    private String eventLocation;
+
+
+    @Min(value = 1, message = "Must be more than 0 attendees.")
+    @NotNull(message = "Must have attendees at event.")
+            private Integer numAttendees;
+
+@AssertTrue(message="Registration to the event must be required.")
+    private Boolean eventRegistration;
+
+    public Event(String name, String description, String contactEmail, String eventLocation, Integer numAttendees, Boolean eventRegistration) {
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
+        this.eventLocation = eventLocation;
+        this.eventRegistration = eventRegistration;
+        this.numAttendees = numAttendees;
+    }
+
+    public String getEventLocation() {
+        return eventLocation;
+    }
+
+    public void setEventLocation(String eventLocation) {
+        this.eventLocation = eventLocation;
+    }
+
+    public Integer getNumAttendees() {
+        return numAttendees;
+    }
+
+    public void setNumAttendees(Integer numAttendees) {
+        this.numAttendees = numAttendees;
+    }
+
+    public Boolean getEventRegistration() {
+        return eventRegistration;
+    }
+
+    public void setEventRegistration(Boolean eventRegistration) {
+        this.eventRegistration = eventRegistration;
     }
 
     public Event() {
